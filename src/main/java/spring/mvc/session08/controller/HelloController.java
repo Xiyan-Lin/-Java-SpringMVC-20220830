@@ -1,12 +1,18 @@
 package spring.mvc.session08.controller;
 
+import java.io.IOException;
+import java.util.Arrays;
 import java.util.IntSummaryStatistics;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import yahoofinance.Stock;
+import yahoofinance.YahooFinance;
 
 @Controller
 @RequestMapping("/hello")
@@ -66,10 +72,19 @@ public class HelloController {
 	
 	/*
 	 * 4. Lab 取得多檔股價與匯率
-	 * 執行路徑: /mvc/hello/symbol?symbol=2330.TW&symbol=2317.TW&USDTWD=x&JPYTWD=x
+	 * 執行路徑: /mvc/hello/symbol?symbol=2330.TW&symbol=2317.TW&symbol=USDTWD=x&symbol=JPYTWD=x
 	 * 請製作對應的方法並印出每個商品股價與匯率資料
 	 * API: https://financequotes-api.com/
 	 * */
+	@RequestMapping("/symbol")
+	@ResponseBody
+	public String symbol(@RequestParam("symbol") String[] symbols) throws IOException {
+		Map<String, Stock> stocks = YahooFinance.get(symbols);
+		return Arrays.toString(symbols) + "<br>" + stocks.toString()
+														 .replace(",", "<br>")
+														 .replace("{", "")
+														 .replace("}", "");
+	}
 	
 	
 	
