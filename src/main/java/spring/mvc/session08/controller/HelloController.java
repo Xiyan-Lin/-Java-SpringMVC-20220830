@@ -64,6 +64,14 @@ public class HelloController {
 		
 	}
 	
+	/*
+	 * 4. Lab 取得多檔股價與匯率
+	 * 執行路徑: /mvc/hello/symbol?symbol=2330.TW&symbol=2317.TW&USDTWD=x&JPYTWD=x
+	 * 請製作對應的方法並印出每個商品股價與匯率資料
+	 * API: https://financequotes-api.com/
+	 * */
+	
+	
 	
 }
 
