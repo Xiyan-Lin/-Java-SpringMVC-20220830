@@ -37,7 +37,11 @@ public class HelloController {
 	 * 執行結果: bmi = 20.76
 	 * 請製作對應的方法 ..
 	 * */
-	
+	public String bmi(@RequestParam(value = "h") Double h,
+					   @RequestParam(value = "w") Double w) {
+		double bmi = w / Math.pow(h/100, 2);
+		return String.format("bmi = %.2f", bmi);
+	}
 	
 	
 }
