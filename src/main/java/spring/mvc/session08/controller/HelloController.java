@@ -1,5 +1,8 @@
 package spring.mvc.session08.controller;
 
+import java.util.IntSummaryStatistics;
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -43,6 +46,22 @@ public class HelloController {
 					   @RequestParam(value = "w") Double w) {
 		double bmi = w / Math.pow(h/100, 2);
 		return String.format("bmi = %.2f", bmi);
+	}
+	
+	/*
+	 * 4. 同名多參數的資料
+	 * 執行路徑: /mvc/hello/age?age=18&age=19&age=21
+	 * 計算出: 資料筆數, 總和, 平均, 最大值, 最小值
+	 * */
+	@RequestMapping("/age")
+	@ResponseBody
+	public String age(@RequestParam("age") List<Integer> ageList) {
+		// int 的統計物件
+		IntSummaryStatistics stat = ageList.stream()
+										   .mapToInt(Integer::intValue)
+										   .summaryStatistics();
+		return String.format("%s<br>%s", ageList, stat);
+		
 	}
 	
 	
