@@ -37,6 +37,8 @@ public class HelloController {
 	 * 執行結果: bmi = 20.76
 	 * 請製作對應的方法 ..
 	 * */
+	@RequestMapping("/bmi")
+	@ResponseBody
 	public String bmi(@RequestParam(value = "h") Double h,
 					   @RequestParam(value = "w") Double w) {
 		double bmi = w / Math.pow(h/100, 2);
