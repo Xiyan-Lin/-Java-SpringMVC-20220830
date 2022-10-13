@@ -8,6 +8,7 @@ import java.util.Map;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -86,6 +87,21 @@ public class HelloController {
 														 .replace("}", "");
 	}
 	
+	/*
+	 * 5. Map 參數(常用於 form 表單上)
+	 * 執行路徑(Get):  /mvc/hello/person?name=Tom&score=90.5&age=18&pass=true
+	 * 執行路徑(Post): /mvc/hello/person 
+	 *               夾帶 name=Tom&score=90.5&age=18&pass=true
+	 * */
+	@RequestMapping(value = "/person", method = {RequestMethod.GET, RequestMethod.POST})
+	@ResponseBody
+	public String getPerson(@RequestParam Map<String, String> person) {
+		String name = person.get("name");
+		String score = person.get("score");
+		String age = person.get("age");
+		String pass = person.get("pass");
+		return String.format("%s, %s, %s, %s\n", name, score, age, pass);
+	}
 	
 	
 }
