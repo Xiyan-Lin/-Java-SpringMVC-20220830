@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import spring.mvc.session08.entity.Person;
 import yahoofinance.Stock;
 import yahoofinance.YahooFinance;
 
@@ -103,6 +104,17 @@ public class HelloController {
 		return String.format("%s, %s, %s, %s\n", name, score, age, pass);
 	}
 	
+	/*
+	 * 6. Entity 自動物件屬性配置
+	 * 執行路徑:  /mvc/hello/add/person?name=Tom&score=90.5&age=18&pass=true
+	 * 會自動將參數配置到物件屬性中
+	 * */
+	@RequestMapping(value = "/add/person")
+	@ResponseBody
+	public String addPerson(Person person) {
+		// 處理新增程序 ... 略
+		return person + " add ok !";
+	}
 	
 }
 
