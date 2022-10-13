@@ -159,7 +159,23 @@ public class HelloController {
 	 * 執行路徑: /mvc/hello/sub           -> 印出: 0
 	 * 請設計出方法 api ?
 	 * */
-	
+	@RequestMapping(value = "/{exp}")
+	@ResponseBody
+	public String calcAddAndSub(@PathVariable("exp") String exp,
+								@RequestParam(value = "x", required = false, defaultValue = "0") Integer x,
+								@RequestParam(value = "y", required = false, defaultValue = "0") Integer y) {
+		
+		int result = 0;
+		switch (exp) {
+			case "add":
+				result = x + y;
+				break;
+			case "sub":
+				result = x - y;
+				break;
+		}
+		return String.format("Result: %d", result);
+	}
 	
 }
 
