@@ -1,5 +1,8 @@
 package spring.mvc.session08.controller;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,6 +35,19 @@ public class DataController {
 		return new ModelAndView(view, "data2", data);
 	}
 	
+	@GetMapping("/case3")
+	public ModelAndView case3() {
+		Map<String, String> map = new LinkedHashMap<>();
+		map.put("data1", "Hello data 1");
+		map.put("data2", "Hello data 2");
+		map.put("data3", "Hello data 3");
+		String view = "/WEB-INF/view/session08/show_data.jsp"; // 資料呈現地(資料渲染地)
+		// 建立 ModelAndView, 目的: 將 data(model) 與 view 封裝起來
+		ModelAndView mv = new ModelAndView();
+		mv.addAllObjects(map);
+		mv.setViewName(view);
+		return mv;
+	}
 	
 	
 }
