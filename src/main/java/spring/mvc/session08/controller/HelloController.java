@@ -152,7 +152,7 @@ public class HelloController {
 	}
 	
 	/*
-	 * 8. Lab
+	 * 8. Lab (@PathVariable 與 @RequestParam 混和應用)
 	 * 執行路徑: /mvc/hello/add?x=30&y=20 -> 印出: 50
 	 * 執行路徑: /mvc/hello/sub?x=30&y=20 -> 印出: -10
 	 * 執行路徑: /mvc/hello/add           -> 印出: 0
