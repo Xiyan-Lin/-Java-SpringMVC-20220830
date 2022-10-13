@@ -171,7 +171,7 @@ public class HelloController {
 				result = x + y;
 				break;
 			case "sub":
-				result = x - y;
+				result = y - x;
 				break;
 		}
 		return String.format("Result: %d", result);
