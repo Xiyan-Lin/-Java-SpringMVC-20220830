@@ -177,6 +177,17 @@ public class HelloController {
 		return String.format("Result: %d", result);
 	}
 	
+	/*
+	 * 9. 路徑參數的萬用字元(任意多字: *, 任意一字: ?)
+	 * 執行路徑: /mvc/hello/any/abc/java8
+	 * 執行路徑: /mvc/hello/any/aaabbbccc/java9
+	 * */
+	@RequestMapping(value = "/any/*/java?")
+	@ResponseBody
+	public String any() {
+		return "Hello any";
+	}
+	
 }
 
 
