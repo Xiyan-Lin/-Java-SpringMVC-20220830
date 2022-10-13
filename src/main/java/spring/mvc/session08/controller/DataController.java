@@ -19,7 +19,8 @@ public class DataController {
 	@GetMapping("/case1")
 	public ModelAndView case1() {
 		String data = "Hello data 1"; // 資料(Model)
-		String view = "/WEB-INF/view/session08/show_data.jsp"; // 資料呈現地(資料渲染地)
+		//String view = "/WEB-INF/view/session08/show_data.jsp"; // 資料呈現地(資料渲染地)
+		String view = "session08/show_data"; // 資料呈現地(資料渲染地) view 必須根據 springmvc-servlet.xml 配置進行修正
 		// 建立 ModelAndView, 目的: 將 data(model) 與 view 封裝起來
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("data1", data);
@@ -30,7 +31,8 @@ public class DataController {
 	@GetMapping("/case2")
 	public ModelAndView case2() {
 		String data = "Hello data 2"; // 資料(Model)
-		String view = "/WEB-INF/view/session08/show_data.jsp"; // 資料呈現地(資料渲染地)
+		//String view = "/WEB-INF/view/session08/show_data.jsp"; // 資料呈現地(資料渲染地)
+		String view = "session08/show_data"; // 資料呈現地(資料渲染地) view 必須根據 springmvc-servlet.xml 配置進行修正
 		// 建立 ModelAndView, 目的: 將 data(model) 與 view 封裝起來
 		return new ModelAndView(view, "data2", data);
 	}
@@ -41,7 +43,8 @@ public class DataController {
 		map.put("data1", "Hello data 1");
 		map.put("data2", "Hello data 2");
 		map.put("data3", "Hello data 3");
-		String view = "/WEB-INF/view/session08/show_data.jsp"; // 資料呈現地(資料渲染地)
+		//String view = "/WEB-INF/view/session08/show_data.jsp"; // 資料呈現地(資料渲染地)
+		String view = "session08/show_data"; // 資料呈現地(資料渲染地) view 必須根據 springmvc-servlet.xml 配置進行修正
 		// 建立 ModelAndView, 目的: 將 data(model) 與 view 封裝起來
 		ModelAndView mv = new ModelAndView();
 		mv.addAllObjects(map);
