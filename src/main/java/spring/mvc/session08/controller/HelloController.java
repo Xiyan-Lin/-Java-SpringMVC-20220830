@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -128,7 +129,7 @@ public class HelloController {
 	 *     "pass":true
 	 * }
 	 * Client 端的 Header 要加入 Content-type: application/json
-	 * 想像一下 input/ouput 都是 json 格式 
+	 * 想像一下 input/output 都是 json 格式 
 	 * */
 	@RequestMapping(value = "/create/person", 
 					method = RequestMethod.POST, 
@@ -139,6 +140,25 @@ public class HelloController {
 		return person;
 	}
 	
+	/*
+	 * 8. 路徑參數 @PathVariable
+	 * 執行路徑: /mvc/hello/exam/75 -> 印出 75 pass
+	 * 執行路徑: /mvc/hello/exam/45 -> 印出 45 fail
+	 * */
+	@RequestMapping(value = "/exam/{score}")
+	@ResponseBody
+	public String verifyExam(@PathVariable("score") Integer score) {
+		return String.format("%d: %s", score, (score >= 60)?"pass":"fail");
+	}
+	
+	/*
+	 * 8. Lab
+	 * 執行路徑: /mvc/hello/add?x=30&y=20 -> 印出: 50
+	 * 執行路徑: /mvc/hello/sub?x=30&y=20 -> 印出: -10
+	 * 執行路徑: /mvc/hello/add           -> 印出: 0
+	 * 執行路徑: /mvc/hello/sub           -> 印出: 0
+	 * 請設計出方法 api ?
+	 * */
 	
 	
 }
