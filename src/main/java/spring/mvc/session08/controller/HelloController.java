@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -115,6 +116,30 @@ public class HelloController {
 		// 處理新增程序 ... 略
 		return person + " add ok !";
 	}
+	
+	/*
+	 * 7. 傳送 json 資料
+	 * 執行路徑:  /mvc/hello/create/person
+	 * 在 body 中帶入 json 資料, 如下:
+	 * {
+	 *     "name": "John",
+	 *     "age": 18,
+	 *     "score":88.5,
+	 *     "pass":true
+	 * }
+	 * Client 端的 Header 要加入 Content-type: application/json
+	 * 想像一下 input/ouput 都是 json 格式 
+	 * */
+	@RequestMapping(value = "/create/person", 
+					method = RequestMethod.POST, 
+					consumes = "application/json;chartset=UTF-8",
+					produces = "application/json;chartset=UTF-8") 
+	@ResponseBody
+	public Person createPerson(@RequestBody Person person) {
+		return person;
+	}
+	
+	
 	
 }
 
