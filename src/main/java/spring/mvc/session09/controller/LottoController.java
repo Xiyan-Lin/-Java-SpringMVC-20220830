@@ -3,10 +3,15 @@ package spring.mvc.session09.controller;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 import java.util.Set;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.stream.Collectors;
+import static java.util.stream.Collectors.toList;
+import static java.util.stream.Collectors.groupingBy;
+import static java.util.stream.Collectors.counting;
+import static java.util.function.Function.identity;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -64,8 +69,12 @@ public class LottoController {
 		// 1. 將所有的資料先利用 flatMap 拆散再透過 collect 收集起來
 		List<Integer> nums = lottos.stream()
 								   .flatMap(lotto -> lotto.stream()) // List<Integer> -> Stream<Integer>
-								   .collect(Collectors.toList()); // List<Integer>
-		model.addAttribute("stat", nums); // 統計資料
+								   .collect(toList()); // List<Integer>
+		// 2. 透過 groupingBy 將資料分組
+		Map<Integer, Long> stat = nums.stream()
+									  .collect(groupingBy(identity(), counting()));
+		
+		model.addAttribute("stat", stat); // 統計資料
 		model.addAttribute("lottos", lottos); // 歷史 lotto 紀錄
 		return "session09/lotto";
 	}
