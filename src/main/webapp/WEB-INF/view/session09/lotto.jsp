@@ -16,11 +16,11 @@
 	</head>
 	<body style="padding: 15px">
 		<button type="button" 
-				onclick="${ pageContext.request.contextPath }/mvc/lotto/get"
+				onclick="window.location.href='${ pageContext.request.contextPath }/mvc/lotto/get';"
 				class="pure-button pure-button-primary">
 			取得 Lotto 539 電腦選號		
 		</button>
-		
+		<p />
 		Lotto 歷史紀錄: <p />
 		${ lottos }
 		
