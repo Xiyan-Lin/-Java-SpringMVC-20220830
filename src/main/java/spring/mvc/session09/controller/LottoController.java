@@ -67,7 +67,7 @@ public class LottoController {
 		while (true) {
 			int n = new Random().nextInt(39) + 1;
 			if(!curr.contains(n)) { // 若 curr 不包含 n
-				list.set(col, n);
+				list.set(col, n); // 變更資料
 				break;
 			}
 		}
