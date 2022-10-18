@@ -21,6 +21,8 @@
 			取得 Lotto 539 電腦選號		
 		</button>
 		<p />
+		最新 lotto 資料: ${ lotto }
+		<p />
 		Lotto 歷史紀錄: <p />
 		${ lottos }
 		
