@@ -50,6 +50,7 @@ public class LottoController {
 	}
 	
 	// 刪除指定 index 的 lotto 紀錄
+	@GetMapping("/delete/{ index }")
 	public String delete(Model model, @PathVariable("index") int index) {
 		// 根據 index 位置刪除該筆紀錄
 		lottos.remove(index);
