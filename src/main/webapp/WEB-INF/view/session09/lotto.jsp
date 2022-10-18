@@ -63,8 +63,9 @@
 				<c:forEach varStatus="status" var="lotto" items="${ lottos }">
 					<tr>
 						<td>${ status.index }</td>
-						<c:forEach var="num" items="${ lotto }">
-							<td>${ num }</td>
+						<c:forEach varStatus="item" var="num" items="${ lotto }">
+							<td onclick="window.location.href='${ pageContext.request.contextPath }/mvc/lotto/change/${ status.index }/${ item.index }';" 
+								style="cursor: pointer;" title="按我一下可以修改">${ num }</td>
 						</c:forEach>
 						<td>
 							<button type="button" 
