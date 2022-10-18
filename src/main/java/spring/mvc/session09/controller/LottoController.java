@@ -22,6 +22,7 @@ public class LottoController {
 	// lotto 主畫面
 	@GetMapping("/")
 	public String index(Model model) {
+		model.addAttribute("lottos", lottos); // 歷史 lotto 紀錄
 		return "session09/lotto";
 	}
 
@@ -38,24 +39,24 @@ public class LottoController {
 		return "session09/lotto"; // jsp 所在位置
 	}
 
-	// 修改指定 index 的 lotto 紀錄
-	@GetMapping("/update/{ index }")
+	// 修改指定 index 的 lotto 紀錄. 注意: { index } 不可有空白
+	@GetMapping("/update/{index}")
 	public String update(Model model, @PathVariable("index") int index) {
 		// 重新取得 lotto 號碼
 		Set<Integer> lotto = getRandomLotto();
 		// 將 lotto 放在指定 index 的位置 (更新資料)
 		lottos.set(index, lotto);
 		model.addAttribute("lottos", lottos); // 歷史 lotto 紀錄
-		return "session09/lotto"; // jsp 所在位置
+		return "redirect:/mvc/lotto/"; // 重導到 lotto 主畫面
 	}
 	
 	// 刪除指定 index 的 lotto 紀錄
-	@GetMapping("/delete/{ index }")
+	@GetMapping("/delete/{index}")
 	public String delete(Model model, @PathVariable("index") int index) {
 		// 根據 index 位置刪除該筆紀錄
 		lottos.remove(index);
 		model.addAttribute("lottos", lottos); // 歷史 lotto 紀錄
-		return "session09/lotto"; // jsp 所在位置
+		return "redirect:/mvc/lotto/"; // 重導到 lotto 主畫面
 	}
 
 	// 隨機產生 lotto 電腦選號
