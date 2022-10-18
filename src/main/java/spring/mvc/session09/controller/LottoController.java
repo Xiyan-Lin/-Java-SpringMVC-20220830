@@ -68,10 +68,12 @@ public class LottoController {
 	public String stat(Model model) {
 		// 1. 將所有的資料先利用 flatMap 拆散再透過 collect 收集起來
 		List<Integer> nums = lottos.stream()
+								   .parallel() // 平行運算
 								   .flatMap(lotto -> lotto.stream()) // List<Integer> -> Stream<Integer>
 								   .collect(toList()); // List<Integer>
 		// 2. 透過 groupingBy 將資料分組
 		Map<Integer, Long> stat = nums.stream()
+									  .parallel() // 平行運算
 									  .collect(groupingBy(identity(), counting()));
 		
 		// 3. 加上排序 (反向排序: 大 -> 小)
