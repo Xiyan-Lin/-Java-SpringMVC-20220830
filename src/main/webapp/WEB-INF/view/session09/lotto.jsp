@@ -32,6 +32,24 @@
 		</button>
 		<p />
 		${ stat }
+		<table class="pure-table pure-table-bordered">
+			<thead>
+				<tr>
+					<th>號碼</th>
+					<c:forEach var="s" items="${ stat }">
+						<th>${ s.key }</th>
+					</c:forEach>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>次數</td>
+					<c:forEach var="s" items="${ stat }">
+						<td>${ s.value }</td>
+					</c:forEach>
+				</tr>
+			</tbody>
+		</table>
 		
 		<p />
 		Lotto 歷史紀錄: <p />
