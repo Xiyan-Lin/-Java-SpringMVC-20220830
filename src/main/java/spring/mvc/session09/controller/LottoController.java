@@ -74,6 +74,12 @@ public class LottoController {
 		Map<Integer, Long> stat = nums.stream()
 									  .collect(groupingBy(identity(), counting()));
 		
+		// 3. 加上排序 (反向排序: 大 -> 小)
+		Map<Integer, Long> result = new LinkedHashMap<>(); // 存放排序後的結果
+		stat.entrySet().stream()
+					   .sorted(Map.Entry.<Integer, Long>comparingByValue().reversed()) // 根據 value 反排序
+					   .forEachOrdered(e -> result.put(e.getKey(), e.getValue())); // 將結果依序存放到 result 中
+		stat = result; // 統計資料有排序
 		model.addAttribute("stat", stat); // 統計資料
 		model.addAttribute("lottos", lottos); // 歷史 lotto 紀錄
 		return "session09/lotto";
