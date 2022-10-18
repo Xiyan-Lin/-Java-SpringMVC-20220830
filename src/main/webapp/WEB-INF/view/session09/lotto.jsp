@@ -24,7 +24,26 @@
 		最新 lotto 資料: ${ lotto }
 		<p />
 		Lotto 歷史紀錄: <p />
-		${ lottos }
+		<table class="pure-table pure-table-bordered">
+			<thead>
+				<tr>
+					<th>#</th><th>號碼 1</th><th>號碼 2</th><th>號碼 3</th><th>號碼 4</th><th>號碼 5</th><th>更新 (Update)</th><th>刪除 (Delete)</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach varStatus="status" var="lotto" items="${ lottos }">
+					<tr>
+						<td>${ status.index }</td>
+						<c:forEach var="num" items="${ lotto }">
+							<td>${ num }</td>
+						</c:forEach>
+						<td>Update</td>
+						<td>Delete</td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+		
 		
 	</body>
 </html>
