@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.Set;
 import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -41,24 +42,34 @@ public class LottoController {
 
 	// 修改指定 index 的 lotto 紀錄. 注意: { index } 不可有空白
 	@GetMapping("/update/{index}")
-	public String update(Model model, @PathVariable("index") int index) {
+	public String update(@PathVariable("index") int index) {
 		// 重新取得 lotto 號碼
 		Set<Integer> lotto = getRandomLotto();
 		// 將 lotto 放在指定 index 的位置 (更新資料)
 		lottos.set(index, lotto);
-		model.addAttribute("lottos", lottos); // 歷史 lotto 紀錄
 		return "redirect:/mvc/lotto/"; // 重導到 lotto 主畫面
 	}
 	
 	// 刪除指定 index 的 lotto 紀錄
 	@GetMapping("/delete/{index}")
-	public String delete(Model model, @PathVariable("index") int index) {
+	public String delete(@PathVariable("index") int index) {
 		// 根據 index 位置刪除該筆紀錄
 		lottos.remove(index);
-		model.addAttribute("lottos", lottos); // 歷史 lotto 紀錄
 		return "redirect:/mvc/lotto/"; // 重導到 lotto 主畫面
 	}
-
+	
+	// 統計每一個號碼出現的次數
+	@GetMapping("/stat")
+	public String stat(Model model) {
+		// 1. 將所有的資料先利用 flatMap 拆散再透過 collect 收集起來
+		List<Integer> nums = lottos.stream()
+								   .flatMap(lotto -> lotto.stream()) // List<Integer> -> Stream<Integer>
+								   .collect(Collectors.toList()); // List<Integer>
+		model.addAttribute("stat", nums); // 統計資料
+		model.addAttribute("lottos", lottos); // 歷史 lotto 紀錄
+		return "session09/lotto";
+	}
+	
 	// 隨機產生 lotto 電腦選號
 	private Set<Integer> getRandomLotto() {
 		// 1~39 取5個不重複的數字

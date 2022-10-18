@@ -23,6 +23,17 @@
 		<p />
 		最新 lotto 資料: ${ lotto }
 		<p />
+		
+		統計每一個號碼出現的次數:
+		<button type="button" 
+				onclick="window.location.href='${ pageContext.request.contextPath }/mvc/lotto/stat';"
+				class="pure-button pure-button-primary">
+			統計運算		
+		</button>
+		<p />
+		${ stat }
+		
+		<p />
 		Lotto 歷史紀錄: <p />
 		<table class="pure-table pure-table-bordered">
 			<thead>
