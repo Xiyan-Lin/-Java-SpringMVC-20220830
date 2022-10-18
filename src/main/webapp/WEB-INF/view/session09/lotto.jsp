@@ -37,8 +37,20 @@
 						<c:forEach var="num" items="${ lotto }">
 							<td>${ num }</td>
 						</c:forEach>
-						<td>Update</td>
-						<td>Delete</td>
+						<td>
+							<button type="button" 
+									onclick="window.location.href='${ pageContext.request.contextPath }/mvc/lotto/update/${ status.index }';"
+									class="pure-button pure-button-primary">
+								修改		
+							</button>
+						</td>
+						<td>
+							<button type="button" 
+									onclick="window.location.href='${ pageContext.request.contextPath }/mvc/lotto/delete/${ status.index }';"
+									class="pure-button pure-button-primary">
+								刪除		
+							</button>
+						</td>
 					</tr>
 				</c:forEach>
 			</tbody>
