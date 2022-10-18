@@ -9,6 +9,9 @@ import java.util.Set;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.stream.Collectors;
 import static java.util.stream.Collectors.toList;
+
+import java.util.ArrayList;
+
 import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.counting;
 import static java.util.function.Function.identity;
@@ -52,6 +55,26 @@ public class LottoController {
 		Set<Integer> lotto = getRandomLotto();
 		// 將 lotto 放在指定 index 的位置 (更新資料)
 		lottos.set(index, lotto);
+		return "redirect:/mvc/lotto/"; // 重導到 lotto 主畫面
+	}
+	
+	// 變更指定 [row][col] 的 lotto 紀錄
+	@GetMapping("/change/{row}/{col}")
+	public String change(@PathVariable("row") int row, @PathVariable("col") int col) {
+		Set<Integer> curr = lottos.get(row); // Set
+		List<Integer> list = new ArrayList<>(curr); // Set 轉 List
+		
+		while (true) {
+			int n = new Random().nextInt(39) + 1;
+			if(!curr.contains(n)) { // 若 curr 不包含 n
+				list.set(col, n);
+				break;
+			}
+		}
+		
+		curr = new LinkedHashSet<>(list); // List 轉 Set
+		// 將 lotto 放在指定 index 的位置 (更新資料)
+		lottos.set(row, curr);
 		return "redirect:/mvc/lotto/"; // 重導到 lotto 主畫面
 	}
 	
