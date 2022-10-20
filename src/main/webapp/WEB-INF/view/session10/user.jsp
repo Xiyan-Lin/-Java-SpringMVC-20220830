@@ -11,7 +11,36 @@
 		<meta charset="UTF-8">
 		<title>User page</title>
 	</head>
-	<body>
-		user
+	<body style="padding: 15px">
+		
+		<table border="0">
+			<td valign="top">
+				<!-- User Form 表單 -->
+				<spform:form class="pure-css" method="post" modelAttribute="user" action="${ pageContext.request.contextPath }/mvc/user/">
+					<fieldset>
+						<legend>User 表單</legend>
+						姓名: <spform:input path="name" /><p /> 
+						年齡: <spform:input path="age" type="number" /><p />
+						生日: <spform:input path="birth" type="date" /><p />
+						學歷: <spform:select path="education">
+								<spform:option value="">請選擇</spform:option>
+								<spform:option value="國中以下">國中以下</spform:option>
+								<spform:option value="高中">高中</spform:option>
+								<spform:option value="大學">大學</spform:option>
+								<spform:option value="研究所">研究所</spform:option>
+							  </spform:select><p />
+						性別: <spform:checkbox path="sex" value="男" />男
+							  <spform:checkbox path="sex" value="女" />女<p />
+						履歷: <spform:textarea path="resume"/><p />
+						<button type="submit" class="pure-button pure-button-primary">新增</button>
+					</fieldset>
+				</spform:form>
+			</td>
+			<td valign="top">
+				<!-- User Table 列表 -->
+				
+			</td>
+		</table>		
+
 	</body>
 </html>
