@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import spring.mvc.session10.entity.User;
 
@@ -51,11 +52,20 @@ public class UserController {
 	}
 	
 	@GetMapping("/{id}")
-	public String get(Model model, @PathVariable int id) {
+	public String get(Model model, @PathVariable("id") int id) {
 		User user = users.get(id);
 		model.addAttribute("user", user);
 		model.addAttribute("id", id);
 		return "session10/user_edit";
+	}
+	
+	// 執行路徑: /user/updateAge/1?age=22
+	@GetMapping("/updateAge/{id}")
+	public String updateAge(@PathVariable("id") int id, @RequestParam(value = "name", defaultValue = "18") Integer age) {
+		User user = users.get(id);
+		user.setAge(age);
+		users.set(id, user);
+		return "redirect:../";
 	}
 	
 	@PutMapping("/{id}")
