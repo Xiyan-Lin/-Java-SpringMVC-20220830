@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>User page</title>
 </head>
 <body>
-
+	user
 </body>
 </html>
