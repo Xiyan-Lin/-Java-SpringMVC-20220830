@@ -57,7 +57,9 @@
 									<tr>
 										<td>${ status.index }</td>
 										<td>${ user.name }</td>
-										<td>${ user.age }</td>
+										<td>
+											<a href="javascript:updateAge(${ status.index }, ${ user.age })">${ user.age }</a>
+										</td>
 										<td>
 											<fmt:formatDate value="${ user.birth }" pattern="yyyy/MM/dd" />
 										</td>
