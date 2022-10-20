@@ -10,6 +10,12 @@
 		<link rel="stylesheet" href="https://unpkg.com/purecss@2.0.6/build/pure-min.css">
 		<meta charset="UTF-8">
 		<title>User page</title>
+		<script>
+			function updateAge(id, age) {
+				var newAge = prompt('請輸入年齡?', age);
+				alert(newAge);
+			}
+		</script>
 	</head>
 	<body style="padding: 15px">
 		<table border="0">
