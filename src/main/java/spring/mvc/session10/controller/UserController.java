@@ -29,6 +29,7 @@ public class UserController {
 		//User user = new User();
 		//model.addAttribute("user", user);
 		
+		model.addAttribute("users", users);
 		return "session10/user";
 	}
 	
