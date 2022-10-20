@@ -61,7 +61,7 @@ public class UserController {
 	
 	// 執行路徑: /user/updateAge/1?age=22
 	@GetMapping("/updateAge/{id}")
-	public String updateAge(@PathVariable("id") int id, @RequestParam(value = "name", defaultValue = "18") Integer age) {
+	public String updateAge(@PathVariable("id") int id, @RequestParam(value = "age", defaultValue = "18") Integer age) {
 		User user = users.get(id);
 		user.setAge(age);
 		users.set(id, user);
