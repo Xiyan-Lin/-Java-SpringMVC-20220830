@@ -6,6 +6,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -24,6 +25,7 @@ public class UserController {
 		users.add(new User("Bobo", 16, new Date(), "高中", "男", new String[] {"看電影", "寫程式"}, "履歷表三"));
 	}
 	
+	@GetMapping("/")
 	public String index(Model model, @ModelAttribute User user) {
 		// 有 @ModelAttribute User user 在方法中定義, 所以下面二行可以不用寫
 		//User user = new User();
