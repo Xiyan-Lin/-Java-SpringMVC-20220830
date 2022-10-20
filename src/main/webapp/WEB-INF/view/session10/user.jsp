@@ -16,7 +16,7 @@
 		<table border="0">
 			<td valign="top">
 				<!-- User Form 表單 -->
-				<spform:form class="pure-css" method="post" modelAttribute="user" action="${ pageContext.request.contextPath }/mvc/user/">
+				<spform:form class="pure-form" method="post" modelAttribute="user" action="${ pageContext.request.contextPath }/mvc/user/">
 					<fieldset>
 						<legend>User 表單</legend>
 						姓名: <spform:input path="name" /><p /> 
