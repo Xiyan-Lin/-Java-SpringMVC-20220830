@@ -34,7 +34,7 @@
 						興趣: <spform:checkbox path="interest" value="爬山" />爬山	  
 							  <spform:checkbox path="interest" value="看電影" />看電影
 							  <spform:checkbox path="interest" value="寫程式" />寫程式
-							  <spform:checkbox path="interest" value="玩遙控" />玩遙控
+							  <spform:checkbox path="interest" value="玩遙控" />玩遙控<p />
 						履歷: <spform:textarea path="resume"/><p />
 						<button type="submit" class="pure-button pure-button-primary">新增</button>
 					</fieldset>
@@ -42,6 +42,22 @@
 			</td>
 			<td valign="top">
 				<!-- User Table 列表 -->
+				<form class="pure-form">
+					<fieldset>
+						<legend>User 列表</legend>
+						
+						<table class="pure-table pure-table-bordered">
+							<thead>
+								<tr>
+									<th>序號</th><th>姓名</th><th>年齡</th><th>生日</th><th>學歷</th>
+									<th>性別</th><th>興趣</th><th>履歷</th><th>修改</th><th>刪除</th>
+								</tr>
+							</thead>
+							<tbody></tbody>
+						</table>
+					
+					</fieldset>
+				</form>
 				
 			</td>
 		</table>		
