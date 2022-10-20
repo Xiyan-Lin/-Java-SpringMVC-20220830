@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -46,4 +47,13 @@ public class UserController {
 		users.add(user);
 		return "redirect:./";
 	}
+	
+	@GetMapping("/{id}")
+	public String get(Model model, @PathVariable int id) {
+		User user = users.get(id);
+		model.addAttribute("user", user);
+		model.addAttribute("id", id);
+		return "session10/user_edit";
+	}
+	
 }
