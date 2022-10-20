@@ -72,7 +72,7 @@
 											 ${ user.interestToString }
 										</td>
 										<td>${ user.resume }</td>
-										<td><a href="#">修改</a></td>
+										<td><a href="${ pageContext.request.contextPath }/mvc/user/${ status.index }">修改</a></td>
 										<td><a href="#">刪除</a></td>
 									</tr>
 								</c:forEach>
