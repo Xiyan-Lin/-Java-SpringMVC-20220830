@@ -13,7 +13,9 @@
 		<script>
 			function updateAge(id, age) {
 				var newAge = prompt('請輸入年齡?', age);
-				alert(newAge);
+				if(newAge != null) {
+					window.location.href = '${ pageContext.request.contextPath }/mvc/user/updateAge/' + id + '?age=' + newAge;
+				}
 			}
 		</script>
 	</head>
