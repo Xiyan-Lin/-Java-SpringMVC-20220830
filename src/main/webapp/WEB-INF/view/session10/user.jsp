@@ -53,7 +53,24 @@
 									<th>性別</th><th>興趣</th><th>履歷</th><th>修改</th><th>刪除</th>
 								</tr>
 							</thead>
-							<tbody></tbody>
+							<tbody>
+								<c:forEach varStatus="status" var="user" items="${ users }">
+									<tr>
+										<td>${ status.index }</td>
+										<td>${ user.name }</td>
+										<td>${ user.age }</td>
+										<td>
+											<fmt:formatDate value="${ user.birth }" pattern="yyyy/MM/dd" />
+										</td>
+										<td>${ user.education }</td>
+										<td>${ user.sex }</td>
+										<td>${ user.interest }</td>
+										<td>${ user.resume }</td>
+										<td><a href="#">修改</a></td>
+										<td><a href="#">刪除</a></td>
+									</tr>
+								</c:forEach>
+							</tbody>
 						</table>
 					
 					</fieldset>
