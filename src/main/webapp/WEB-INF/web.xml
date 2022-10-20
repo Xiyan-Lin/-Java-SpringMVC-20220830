@@ -47,7 +47,7 @@
         <url-pattern>/mvc/*</url-pattern>
     </filter-mapping>
 
-    <!-- String 最新版已經內建所以以下不需要宣告 -->
+    <!-- Spring 最新版已經內建所以以下不需要宣告 -->
     <!-- 
     <filter>
         <filter-name>HiddenHttpMethodFilter</filter-name>
