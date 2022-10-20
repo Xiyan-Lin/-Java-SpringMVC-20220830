@@ -77,6 +77,11 @@ public class User {
 	public String[] getInterest() {
 		return interest;
 	}
+	
+	// 將 interest 的 String[] 內容 轉 字串
+	public String getInterestToString() {
+		return Arrays.toString(interest);
+	}
 
 	public void setInterest(String[] interest) {
 		this.interest = interest;
