@@ -6,11 +6,12 @@
 <%@ taglib prefix="spform" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>User page</title>
-</head>
-<body>
-	user
-</body>
+	<head>
+		<link rel="stylesheet" href="https://unpkg.com/purecss@2.0.6/build/pure-min.css">
+		<meta charset="UTF-8">
+		<title>User page</title>
+	</head>
+	<body>
+		user
+	</body>
 </html>
