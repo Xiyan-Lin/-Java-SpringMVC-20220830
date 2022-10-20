@@ -14,8 +14,8 @@
 	<body style="padding: 15px">
 		<table border="0">
 			<td valign="top">
-				<!-- User Form 表單 -->
-				<spform:form class="pure-form" method="post" modelAttribute="user" action="${ pageContext.request.contextPath }/mvc/user/">
+				<!-- User Form 表單修改 -->
+				<spform:form class="pure-form" method="post" modelAttribute="user" action="${ pageContext.request.contextPath }/mvc/user/${ id }">
 					<fieldset>
 						<legend>User 表單修改</legend>
 						姓名: <spform:input path="name" /><p /> 
