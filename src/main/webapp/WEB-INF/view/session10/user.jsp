@@ -64,7 +64,11 @@
 										</td>
 										<td>${ user.education }</td>
 										<td>${ user.sex }</td>
-										<td>${ user.interest }</td>
+										<td>
+											<c:forEach var="name" items="${ user.interest }">
+												${ name }
+											</c:forEach>
+										</td>
 										<td>${ user.resume }</td>
 										<td><a href="#">修改</a></td>
 										<td><a href="#">刪除</a></td>
