@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import spring.mvc.session10.entity.User;
@@ -40,4 +41,9 @@ public class UserController {
 		return "session10/user";
 	}
 	
+	@PostMapping("/")
+	public String add(@ModelAttribute User user) {
+		users.add(user);
+		return "redirect:./";
+	}
 }
