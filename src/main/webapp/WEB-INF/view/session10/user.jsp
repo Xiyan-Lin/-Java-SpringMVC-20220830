@@ -29,8 +29,12 @@
 								<spform:option value="大學">大學</spform:option>
 								<spform:option value="研究所">研究所</spform:option>
 							  </spform:select><p />
-						性別: <spform:checkbox path="sex" value="男" />男
-							  <spform:checkbox path="sex" value="女" />女<p />
+						性別: <spform:radiobutton path="sex" value="男" />男
+							  <spform:radiobutton path="sex" value="女" />女<p />
+						興趣: <spform:checkbox path="interest" value="爬山" />爬山	  
+							  <spform:checkbox path="interest" value="看電影" />看電影
+							  <spform:checkbox path="interest" value="寫程式" />寫程式
+							  <spform:checkbox path="interest" value="玩遙控" />玩遙控
 						履歷: <spform:textarea path="resume"/><p />
 						<button type="submit" class="pure-button pure-button-primary">新增</button>
 					</fieldset>
