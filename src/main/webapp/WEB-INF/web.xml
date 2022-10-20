@@ -47,8 +47,6 @@
         <url-pattern>/mvc/*</url-pattern>
     </filter-mapping>
 
-    <!-- Spring 的 spform 已經內建所以以下不需要宣告 -->
-    <!-- 
     <filter>
         <filter-name>HiddenHttpMethodFilter</filter-name>
         <filter-class>org.springframework.web.filter.HiddenHttpMethodFilter</filter-class>
@@ -58,6 +56,5 @@
         <filter-name>HiddenHttpMethodFilter</filter-name>
         <url-pattern>/mvc/*</url-pattern>
     </filter-mapping>
-    -->
     
 </web-app>

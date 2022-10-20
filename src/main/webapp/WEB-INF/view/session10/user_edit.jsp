@@ -41,10 +41,9 @@
 			</td>
 			<td valign="top">
 				<!-- User Form 表單紀錄刪除 -->
-				<spform:form class="pure-form" method="delete" modelAttribute="user" action="${ pageContext.request.contextPath }/mvc/user/${ id }">
+				<spform:form class="pure-form" method="delete" action="${ pageContext.request.contextPath }/mvc/user/${ id }">
 					<fieldset>
 						<legend>User 表單紀錄刪除</legend>
-						姓名: <spform:input path="name" readonly /><p /> 
 						<button type="submit" class="pure-button pure-button-primary">刪除</button>
 					</fieldset>
 				</spform:form>
