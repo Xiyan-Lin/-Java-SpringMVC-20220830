@@ -33,9 +33,18 @@ public class MyStockValidator implements Validator {
 			if(stock == null) {
 				errors.rejectValue("symbol", "mystock.symbol.notFound");
 			} else {
-				// 2. 買進價格: 買進價格必須是昨日收盤價的±10%之間
+				// 取得昨日收諞價
+				double previousClose = stock.getQuote().getPreviousClose().doubleValue();
 				
-				// 3. 買進股數: 買進股數必須是1000的倍數(1000股=1張) 
+				// 2. 買進價格: 買進價格必須是昨日收盤價的±10%之間
+				if(myStock.getPrice() > previousClose * 1.1 || myStock.getPrice() < previousClose * 0.9) {
+					errors.rejectValue("price", "mystock.price.rangeError");
+				}
+				
+				// 3. 買進股數: 買進股數必須是1000的倍數(1000股=1張)
+				if(myStock.getAmount() % 1000 != 0) {
+					errors.rejectValue("amount", "mystock.amount.rangeError");
+				}
 			}
 			
 		} catch (Exception e) {
