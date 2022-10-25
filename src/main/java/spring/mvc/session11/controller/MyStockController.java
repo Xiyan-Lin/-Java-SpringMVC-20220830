@@ -5,6 +5,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 import javax.validation.Valid;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -14,11 +15,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import spring.mvc.session11.entity.MyStock;
+import spring.mvc.session11.validator.MyStockValidator;
 
 @Controller
 @RequestMapping("/mystock")
 public class MyStockController {
 	private List<MyStock> myStocks = new CopyOnWriteArrayList<>();
+	
+	@Autowired
+	private MyStockValidator myStockValidator;
 	
 	@GetMapping("/")
 	public String index(Model model, @ModelAttribute MyStock myStock) {
