@@ -33,6 +33,26 @@
 				<spform:errors path="*" cssClass="error" /><p />	  	      	
 			</fieldset>
 		</spform:form>
-		${ people }
+		<table class="pure-table pure-table-bordered">
+			<thead>
+				<tr>
+					<th>姓名</th><th>年齡</th><th>會員</th><th>生日</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach var="person" items="${ people }">
+					<tr>
+						<td>${ person.name }</td>
+						<td>${ person.age }</td>
+						<td>${ person.member }</td>
+						<td>
+							<fmt:formatDate value="${ person.birth }" pattern="yyyy-MM-dd"/>
+						</td>
+					</tr>
+				</c:forEach>
+			</tbody>
+			
+		</table>
+		
 	</body>
 </html>

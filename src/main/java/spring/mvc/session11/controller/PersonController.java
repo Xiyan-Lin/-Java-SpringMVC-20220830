@@ -28,11 +28,12 @@ public class PersonController {
 	}
 	
 	@PostMapping("/")
-	public String add(@ModelAttribute @Valid Person person, BindingResult result) {
+	public String add(Model model, @ModelAttribute @Valid Person person, BindingResult result) {
 		// 驗證 Person
 		// 驗證結果會放在 result 中
 		if(result.hasErrors()) {
 			// 若有錯誤發生就會自動機錯誤訊息傳送到指定的 view 中
+			model.addAttribute("people", people);
 			return "session11/person";
 		}
 		people.add(person);
