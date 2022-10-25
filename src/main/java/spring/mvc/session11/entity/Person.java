@@ -14,19 +14,26 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class Person {
 	
-	@NotEmpty(message = "姓名不可是空值")
-	@Size(min = 2, max = 50, message = "名字範圍必須介於2~50個字之間")
+	//@NotEmpty(message = "姓名不可是空值")
+	//@Size(min = 2, max = 50, message = "名字範圍必須介於2~50個字之間")
+	@NotEmpty(message = "{person.name.notEmpty}")
+	@Size(min = 2, max = 50, message = "{person.name.size}")
 	private String name; // 姓名
 	
-	@NotNull(message = "年齡不可是空值")
-	@Range(min = 18, max = 120, message = "年齡必須介於18~120歲之間")
+	//@NotNull(message = "年齡不可以是空值")
+	//@Range(min = 18, max = 99, message = "年齡範圍必須介於18~99歲之間")
+	@NotNull(message = "{person.age.notNull}")
+	@Range(min = 18, max = 120, message = "{person.age.range}")
 	private Integer age; // 年齡
 	
-	@NotNull(message = "會員設定不可是空值")
+	//@NotNull(message = "會員設定不可是空值")
+	@NotNull(message = "{person.member.notNull}")
 	private Boolean member; // 是否是會員
 	
-	@NotNull(message = "生日不可是空值")
-	@Past(message = "生日不可大於現在的日期")
+	//@NotNull(message = "生日不可是空值")
+	//@Past(message = "生日不可大於現在的日期")
+	@NotNull(message = "{person.birth.notNull}")
+	@Past(message = "{person.birth.past}")
 	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date birth; // 生日
