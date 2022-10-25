@@ -23,7 +23,7 @@ public class MyStockController {
 	private List<MyStock> myStocks = new CopyOnWriteArrayList<>();
 	
 	@Autowired
-	private MyStockValidator myStockValidator;
+	private MyStockValidator myStockValidator; // 自訂錯誤驗證
 	
 	@GetMapping("/")
 	public String index(Model model, @ModelAttribute MyStock myStock) {
@@ -33,6 +33,8 @@ public class MyStockController {
 	
 	@PostMapping("/")
 	public String add(Model model, @ModelAttribute @Valid MyStock myStock, BindingResult result) {
+		// 配置自訂錯誤驗證
+		myStockValidator.validate(myStock, result);
 		if(result.hasErrors()) {
 			model.addAttribute("myStocks", myStocks);
 			return "session11/mystock";
