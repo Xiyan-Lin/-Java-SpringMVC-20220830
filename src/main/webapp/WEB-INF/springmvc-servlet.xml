@@ -55,5 +55,20 @@
     	<property name="validationMessageSource" ref="messageSource" />
     </bean>
     
+    <!--  解決中文 與 JSR 303 Validator 設定 -->
+	<mvc:annotation-driven validator="validator">
+		<mvc:message-converters
+			register-defaults="true">
+			<bean
+				class="org.springframework.http.converter.StringHttpMessageConverter">
+				<property name="supportedMediaTypes">
+					<list>
+						<value>text/html;charset=UTF-8</value>
+					</list>
+				</property>
+			</bean>
+		</mvc:message-converters>
+	</mvc:annotation-driven>
+    
 	
 </beans>	
