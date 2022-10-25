@@ -47,5 +47,13 @@
         <property name="useCodeAsDefaultMessage" value="false"/>  
         <property name="defaultEncoding" value="UTF-8"/>
     </bean>
+    
+    <!-- JSR 303 Validator 驗證: Hibernate Validator 實作驗證配置-->
+    <bean id="validator"
+    		class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+    	<property name="providerClass" value="org.hibernate.validator.HibernateValidator" />
+    	<property name="validationMessageSource" ref="messageSource" />
+    </bean>
+    
 	
 </beans>	
