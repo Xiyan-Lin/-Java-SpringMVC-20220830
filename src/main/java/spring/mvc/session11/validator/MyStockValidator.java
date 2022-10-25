@@ -28,6 +28,7 @@ public class MyStockValidator implements Validator {
 		// 進階驗證
 		MyStock myStock = (MyStock)target;
 		try {
+			System.out.println(myStock);
 			Stock stock = YahooFinance.get(myStock.getSymbol());
 			// 1. 股票代號: 股票代號必須要有存在於市場中
 			if(stock == null) {
@@ -38,7 +39,8 @@ public class MyStockValidator implements Validator {
 				
 				// 2. 買進價格: 買進價格必須是昨日收盤價的±10%之間
 				if(myStock.getPrice() > previousClose * 1.1 || myStock.getPrice() < previousClose * 0.9) {
-					errors.rejectValue("price", "mystock.price.rangeError");
+					Object[] args = {myStock.getPrice(), previousClose};
+					errors.rejectValue("price", "mystock.price.rangeError", args, null);
 				}
 				
 				// 3. 買進股數: 買進股數必須是1000的倍數(1000股=1張)
