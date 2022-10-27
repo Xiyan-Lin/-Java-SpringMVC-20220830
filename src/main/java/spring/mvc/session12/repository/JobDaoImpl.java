@@ -2,8 +2,10 @@ package spring.mvc.session12.repository;
 
 import java.util.List;
 
+import org.simpleflatmapper.jdbc.spring.JdbcTemplateMapperFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.stereotype.Repository;
 
 import spring.mvc.session12.entity.Job;
@@ -46,8 +48,15 @@ public class JobDaoImpl implements JobDao {
 
 	@Override
 	public List<Job> query() {
-		// TODO Auto-generated method stub
-		return null;
+		String sql = "select j.jid, j.jname, j.eid, " +
+					 "e.eid as employee_eid, e.ename as employee_ename, e.salary as employee_salary, e.createtime as employee_createtime " +
+					 "from job j left join employee e on j.eid = e.eid";
+		
+		ResultSetExtractor<List<Job>> resultSetExtractor = JdbcTemplateMapperFactory.newInstance()
+				.addKeys("jid") // Job 主表的主鍵欄位
+				.newResultSetExtractor(Job.class);
+		
+		return jdbcTemplate.query(sql, resultSetExtractor);
 	}
 
 	@Override
