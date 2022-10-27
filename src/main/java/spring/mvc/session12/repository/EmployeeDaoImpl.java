@@ -34,19 +34,20 @@ public class EmployeeDaoImpl implements EmployeeDao {
 
 	@Override
 	public int getCount() {
-		// TODO Auto-generated method stub
-		return 0;
+		String sql = "select count(*) from employee";
+		return jdbcTemplate.queryForObject(sql, Integer.class);
 	}
 
 	@Override
 	public Employee getById(Integer eid) {
-		// TODO Auto-generated method stub
-		return null;
+		String sql = "select eid, ename, salary, createtime from employee where eid=?";
+		return jdbcTemplate.queryForObject(sql, Employee.class, eid);
 	}
 
 	@Override
 	public List<Employee> query() {
-		// TODO Auto-generated method stub
+		// 利用 SQL-Join 結合 SimpleFlatMapper
+		
 		return null;
 	}
 
