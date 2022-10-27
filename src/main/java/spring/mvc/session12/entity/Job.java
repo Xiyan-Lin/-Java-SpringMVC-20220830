@@ -5,6 +5,6 @@ import java.util.List;
 
 public class Job {
 	
-	
+	private Integer 
 	
 }

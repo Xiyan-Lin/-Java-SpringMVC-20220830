@@ -13,7 +13,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class Employee {
 	
-	private Integer id; // 資料表序號
+	private Integer eid; // 資料表序號
 	
 	@Size(min = 2, max = 50, message = "{employee.ename.size}")
 	private String ename;
@@ -29,12 +29,12 @@ public class Employee {
 	// 加入 List<Job> 表示一位員工可以有多個工作
 	private List<Job> jobs;
 
-	public Integer getId() {
-		return id;
+	public Integer getEid() {
+		return eid;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setEid(Integer eid) {
+		this.eid = eid;
 	}
 
 	public String getEname() {
@@ -71,7 +71,7 @@ public class Employee {
 
 	@Override
 	public String toString() {
-		return "Employee [id=" + id + ", ename=" + ename + ", salary=" + salary + ", createtime=" + createtime
+		return "Employee [eid=" + eid + ", ename=" + ename + ", salary=" + salary + ", createtime=" + createtime
 				+ ", jobs size=" + ((jobs == null) ? 0 : jobs.size()) + "]";
 	}
 	
