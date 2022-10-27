@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.simpleflatmapper.jdbc.spring.JdbcTemplateMapperFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.stereotype.Repository;
@@ -43,7 +44,7 @@ public class JobDaoImpl implements JobDao {
 	@Override
 	public Job getById(Integer jid) {
 		String sql = "select jid, jname, eid from job where jid=?";
-		return jdbcTemplate.queryForObject(sql, Job.class, jid);
+		return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<Job>(Job.class), jid);
 	}
 
 	@Override

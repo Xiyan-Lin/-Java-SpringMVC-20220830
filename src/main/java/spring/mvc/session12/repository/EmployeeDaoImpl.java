@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.simpleflatmapper.jdbc.spring.JdbcTemplateMapperFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.stereotype.Repository;
@@ -43,7 +44,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 	@Override
 	public Employee getById(Integer eid) {
 		String sql = "select eid, ename, salary, createtime from employee where eid=?";
-		return jdbcTemplate.queryForObject(sql, Employee.class, eid);
+		return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<Employee>(Employee.class), eid);
 	}
 
 	@Override
