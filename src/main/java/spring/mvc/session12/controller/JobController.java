@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -32,6 +33,16 @@ public class JobController {
 		model.addAttribute("employees", employeeDao.query());
 		return "session12/job";
 	}
+	
+	@GetMapping("/{jid}")
+	public String get(@PathVariable("jid") Integer jid, Model model) {
+		model.addAttribute("_method", "PUT");
+		model.addAttribute("jobs", jobDao.query());
+		model.addAttribute("employees", employeeDao.query());
+		model.addAttribute("job", jobDao.getById(jid));
+		return "session12/job";
+	}
+	
 	
 	@PostMapping("/")
 	public String add(@ModelAttribute @Valid Job job, BindingResult result, Model model) {
