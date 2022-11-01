@@ -6,7 +6,7 @@ import spring.mvc.session12.entity.Job;
 
 public interface JobDao {
 	// 每頁筆數
-	int LIMIT = 5;
+	int LIMIT = 10;
 	
 	// 新增
 	int add(Job job);

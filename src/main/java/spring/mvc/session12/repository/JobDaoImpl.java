@@ -62,8 +62,20 @@ public class JobDaoImpl implements JobDao {
 
 	@Override
 	public List<Job> queryPage(int offset) {
-		// TODO Auto-generated method stub
-		return null;
+		String sql = "select j.jid, j.jname, j.eid, " +
+				 "e.eid as employee_eid, e.ename as employee_ename, e.salary as employee_salary, e.createtime as employee_createtime " +
+				 "from job j left join employee e on j.eid = e.eid ";
+		
+		// 加入分頁 sql
+		if(offset > 0) {
+			sql += String.format("limit %d offset %d ", LIMIT, offset) ;
+		}
+		
+		ResultSetExtractor<List<Job>> resultSetExtractor = JdbcTemplateMapperFactory.newInstance()
+			.addKeys("jid") // Job 主表的主鍵欄位
+			.newResultSetExtractor(Job.class);
+	
+		return jdbcTemplate.query(sql, resultSetExtractor);
 	}
 	
 	
