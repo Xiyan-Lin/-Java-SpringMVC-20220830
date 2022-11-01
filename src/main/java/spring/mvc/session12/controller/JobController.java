@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import spring.mvc.session12.entity.Job;
@@ -53,6 +54,19 @@ public class JobController {
 			return "session12/job";
 		}
 		jobDao.add(job);
+		return "redirect:./";
+	}
+	
+	@PutMapping("/")
+	public String update(@ModelAttribute @Valid Job job, BindingResult result, Model model) {
+		if(result.hasErrors()) {
+			model.addAttribute("_method", "POST");
+			model.addAttribute("jobs", jobDao.query());
+			model.addAttribute("employees", employeeDao.query());
+			//model.addAttribute("Job", job); // 因為參數有設定 @ModelAttribute 所以系統會自動帶入, 因此就不用手動撰寫帶入 job
+			return "session12/job";
+		}
+		jobDao.update(job);
 		return "redirect:./";
 	}
 	
