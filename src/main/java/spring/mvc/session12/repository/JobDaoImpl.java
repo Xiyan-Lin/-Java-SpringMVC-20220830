@@ -67,7 +67,7 @@ public class JobDaoImpl implements JobDao {
 				 "from job j left join employee e on j.eid = e.eid ";
 		
 		// 加入分頁 sql
-		if(offset > 0) {
+		if(offset >= 0) {
 			sql += String.format("limit %d offset %d ", LIMIT, offset) ;
 		}
 		

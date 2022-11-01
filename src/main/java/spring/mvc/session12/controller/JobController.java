@@ -28,12 +28,21 @@ public class JobController {
 	@Autowired
 	private EmployeeDao employeeDao;
 	
+	private int getPageCount() {
+		int pageCount = (int)Math.ceil((double)jobDao.getCount() / jobDao.LIMIT);
+		return pageCount;
+	}
+	
 	@GetMapping("/")
 	public String index(@ModelAttribute Job job, Model model) {
+		/*
 		model.addAttribute("_method", "POST");
 		model.addAttribute("jobs", jobDao.query());
 		model.addAttribute("employees", employeeDao.query());
+		model.addAttribute("pageCount", getPageCount());
 		return "session12/job";
+		*/
+		return "redirect:./page/1";
 	}
 	
 	@GetMapping("/{jid}")
@@ -42,9 +51,19 @@ public class JobController {
 		model.addAttribute("jobs", jobDao.query());
 		model.addAttribute("employees", employeeDao.query());
 		model.addAttribute("job", jobDao.getById(jid));
+		model.addAttribute("pageCount", getPageCount());
 		return "session12/job";
 	}
 	
+	@GetMapping("/page/{num}")
+	public String page(@ModelAttribute Job job, @PathVariable("num") Integer num, Model model) {
+		int offset = JobDao.LIMIT * (num - 1);
+		model.addAttribute("_method", "POST");
+		model.addAttribute("jobs", jobDao.queryPage(offset)); // 分頁查詢
+		model.addAttribute("employees", employeeDao.query());
+		model.addAttribute("pageCount", getPageCount());
+		return "session12/job";
+	}
 	
 	@PostMapping("/")
 	public String add(@ModelAttribute @Valid Job job, BindingResult result, Model model) {
@@ -52,6 +71,7 @@ public class JobController {
 			model.addAttribute("_method", "POST");
 			model.addAttribute("jobs", jobDao.query());
 			model.addAttribute("employees", employeeDao.query());
+			model.addAttribute("pageCount", getPageCount());
 			return "session12/job";
 		}
 		jobDao.add(job);
@@ -64,6 +84,7 @@ public class JobController {
 			model.addAttribute("_method", "POST");
 			model.addAttribute("jobs", jobDao.query());
 			model.addAttribute("employees", employeeDao.query());
+			model.addAttribute("pageCount", getPageCount());
 			//model.addAttribute("Job", job); // 因為參數有設定 @ModelAttribute 所以系統會自動帶入, 因此就不用手動撰寫帶入 job
 			return "session12/job";
 		}
