@@ -62,6 +62,7 @@ public class JobController {
 		model.addAttribute("jobs", jobDao.queryPage(offset)); // 分頁查詢
 		model.addAttribute("employees", employeeDao.query());
 		model.addAttribute("pageCount", getPageCount());
+		model.addAttribute("pageNum", num);
 		return "session12/job";
 	}
 	

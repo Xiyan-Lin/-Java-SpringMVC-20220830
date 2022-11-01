@@ -91,7 +91,13 @@
 						<legend>
 							Job List | 分頁查詢
 							<c:forEach var="num" begin="1" end="${ pageCount }">
-								<a href="${ pageContext.request.contextPath }/mvc/jdbc/job/page/${ num }">${ num }</a>&nbsp;
+								<c:if test="${ num eq pageNum }">
+									${ num }&nbsp;
+								</c:if>
+								<c:if test="${ num != pageNum }">
+									<a href="${ pageContext.request.contextPath }/mvc/jdbc/job/page/${ num }">${ num }</a>&nbsp;
+								</c:if>
+								
 							</c:forEach>
 						</legend>
 					</fieldset>
