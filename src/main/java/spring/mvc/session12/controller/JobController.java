@@ -75,7 +75,9 @@ public class JobController {
 			return "session12/job";
 		}
 		jobDao.add(job);
-		return "redirect:./";
+		//return "redirect:./";
+		int num = getPageCount();
+		return page(job, num, model);
 	}
 	
 	@PutMapping("/")
