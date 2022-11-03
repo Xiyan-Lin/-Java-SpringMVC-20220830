@@ -1,5 +1,6 @@
 package spring.mvc.session12.repository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.simpleflatmapper.jdbc.spring.JdbcTemplateMapperFactory;
@@ -63,21 +64,16 @@ public class EmployeeDaoImpl implements EmployeeDao {
 
 	@Override
 	public List<Employee> queryPage(int offset) {
-		// 利用 SQL-Join 結合 SimpleFlatMapper
-		String sql = "select e.eid, e.ename, e.salary, e.createtime, "  +
-					 "j.jid as job_jid, j.jname as job_jname, j.eid as job_eid " +
-					 "from employee e left join job j on e.eid = j.eid ";
+		List<Employee> employees = query();
+		int max = employees.size();
 		
-		// 加入分頁 sql
-		if(offset >= 0) {
-			sql += String.format("limit %d offset %d ", LIMIT, offset) ;
+		List<Employee> employeesPage = new ArrayList<>();
+		for(int i=offset;i<offset+EmployeeDao.LIMIT;i++) {
+			if(i >= max) break;
+			employeesPage.add(employees.get(i));
 		}
 		
-		ResultSetExtractor<List<Employee>> resultSetExtractor = JdbcTemplateMapperFactory.newInstance()
-				.addKeys("eid") // employee 主表的主鍵欄位
-				.newResultSetExtractor(Employee.class); // 資料結果要對應的物件類別
-		
-		return jdbcTemplate.query(sql, resultSetExtractor);
+		return employeesPage;
 	}
 	
 	

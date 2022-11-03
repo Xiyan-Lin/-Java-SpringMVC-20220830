@@ -31,6 +31,10 @@ public class EmployeeController {
 	
 	@GetMapping("/")
 	public String index(@ModelAttribute Employee employee, Model model) {
+//		model.addAttribute("_method", "POST");
+//		model.addAttribute("employees", employeeDao.query());
+//		model.addAttribute("pageCount", getPageCount());
+//		return "session12/employee";
 		return page(employee, 1, model);
 	}
 	
