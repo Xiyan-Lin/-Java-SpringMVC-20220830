@@ -80,6 +80,17 @@ CREATE TABLE `employee` (
 
 INSERT INTO `employee` VALUES (1,'Reeves','Keith','402-146-7714','4714 Countrywood Drive','68501',11060,'387-39-3938','2013-01-29 00:00:00',NULL,11,15,'Manager'),(2,'Gibson','Bill','919-245-0526','7140 Blackjack Road','27842',9146,'151-23-1243','2013-03-31 00:00:00',NULL,1,12,'Manager'),(3,'Reasoner','Katy','413-414-8275','7660 Trail East Drive','01101',8313,'623-46-2346','2013-02-17 00:00:00',NULL,1,11,'Manager'),(4,'Hopkins','Alan','412-524-9814','3331 Union Road','15219',10641,'234-62-3463','2013-02-08 00:00:00',NULL,3,3,'Worker'),(5,'James','Leisha','407-026-6653','6363 Springhill Avenue','32802',7083,'472-45-6456','2013-01-06 00:00:00',NULL,2,3,'Animal Friend'),(6,'Eaton','Anissa','906-446-7957','9127 Jackson Avenue','49930',8676,'245-72-4564','2013-08-23 00:00:00',NULL,2,4,'Animal Friend'),(7,'Farris','Dustin','615-891-5545','9145 Liberty Street','37202',10878,'946-54-5635','2013-03-28 00:00:00',NULL,2,3,'Animal Friend'),(8,'Carpenter','Carlos','215-545-8897','4098 Locust Street','19104',10592,'247-24-5765','2013-12-29 00:00:00',NULL,3,7,'Worker'),(9,'O\'Connor','Jessica','203-170-0146','6824 Longview Drive','06101',6731,'834-57-3457','2013-07-23 00:00:00',NULL,2,5,'Animal Friend'),(10,'Shields','Howard','304-607-9081','315 Horseshoe Road','26003',11692,'245-74-5776','2013-07-13 00:00:00',NULL,2,4,'Animal Friend'),(11,'Smith','Sally','860-333-9872','87 S. State Street','06101',6731,'111-33-5555','2013-01-01 00:00:00',NULL,0,30,'Owner');
 
+CREATE TABLE `merchandise` (
+  `ItemID` int(11) NOT NULL,
+  `Description` varchar(50) DEFAULT NULL,
+  `QuantityOnHand` int(11) DEFAULT NULL,
+  `ListPrice` double DEFAULT NULL,
+  `Category` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`ItemID`),
+  KEY `fk_categorym_idx` (`Category`),
+  CONSTRAINT `fk_categorym` FOREIGN KEY (`Category`) REFERENCES `category` (`Category`)
+);
+
 
 
 
