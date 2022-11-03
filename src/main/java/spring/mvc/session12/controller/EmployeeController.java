@@ -1,5 +1,6 @@
 package spring.mvc.session12.controller;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,27 +31,33 @@ public class EmployeeController {
 	}
 	
 	@GetMapping("/")
-	public String index(@ModelAttribute Employee employee, Model model) {
-//		model.addAttribute("_method", "POST");
-//		model.addAttribute("employees", employeeDao.query());
-//		model.addAttribute("pageCount", getPageCount());
-//		return "session12/employee";
-		return page(employee, 1, model);
+	public String index(@ModelAttribute Employee employee, Model model, HttpSession session) {
+		int num = 1;
+		if(session.getAttribute("num") != null) {
+			num = (Integer)(session.getAttribute("num"));
+		}
+		return page(employee, num, model, session);
 	}
 	
 	@GetMapping("/{eid}")
-	public String get(@PathVariable("eid") Integer eid, Model model) {
-		int offset = 0;
+	public String get(@PathVariable("eid") Integer eid, Model model, HttpSession session) {
+		int num = (Integer)(session.getAttribute("num"));
+		int offset = (Integer)(session.getAttribute("offset"));
 		model.addAttribute("_method", "PUT");
 		model.addAttribute("employees", employeeDao.queryPage(offset));
 		model.addAttribute("employee", employeeDao.getById(eid));
 		model.addAttribute("pageCount", getPageCount());
+		model.addAttribute("pageNum", num);
 		return "session12/employee";
 	}
 	
 	@GetMapping("/page/{num}")
-	public String page(@ModelAttribute Employee employee, @PathVariable("num") Integer num, Model model) {
+	public String page(@ModelAttribute Employee employee, @PathVariable("num") Integer num, Model model, HttpSession session) {
 		int offset = (num - 1) * EmployeeDao.LIMIT;
+		// 將 num, offset 存放到 session 變數中
+		session.setAttribute("num", num);
+		session.setAttribute("offset", offset);
+		//-------------------------------------
 		model.addAttribute("_method", "POST");
 		model.addAttribute("employees", employeeDao.queryPage(offset));
 		model.addAttribute("pageCount", getPageCount());
@@ -60,25 +67,30 @@ public class EmployeeController {
 	
 	
 	@PostMapping("/")
-	public String add(@ModelAttribute @Valid Employee employee, BindingResult result, Model model) {
+	public String add(@ModelAttribute @Valid Employee employee, BindingResult result, Model model, HttpSession session) {
+		int num = (Integer)(session.getAttribute("num"));
+		int offset = (Integer)(session.getAttribute("offset"));
 		if(result.hasErrors()) {
-			int offset = 0;
 			model.addAttribute("_method", "POST");
 			model.addAttribute("employees", employeeDao.queryPage(offset));
 			model.addAttribute("pageCount", getPageCount());
+			model.addAttribute("pageNum", num);
 			return "session12/employee"; 
 		}
 		employeeDao.add(employee);
+		session.setAttribute("num", getPageCount());
 		return "redirect:./";
 	}
 	
 	@PutMapping("/")
-	public String update(@ModelAttribute @Valid Employee employee, BindingResult result, Model model) {
+	public String update(@ModelAttribute @Valid Employee employee, BindingResult result, Model model, HttpSession session) {
+		int num = (Integer)(session.getAttribute("num"));
+		int offset = (Integer)(session.getAttribute("offset"));
 		if(result.hasErrors()) {
-			int offset = 0;
 			model.addAttribute("_method", "PUT");
 			model.addAttribute("employees", employeeDao.queryPage(offset));
 			model.addAttribute("pageCount", getPageCount());
+			model.addAttribute("pageNum", num);
 			return "session12/employee"; 
 		}
 		employeeDao.update(employee);
@@ -86,8 +98,12 @@ public class EmployeeController {
 	}
 	
 	@DeleteMapping("/")
-	public String delete(Employee employee) {
+	public String delete(Employee employee, HttpSession session) {
 		employeeDao.delete(employee.getEid());
+		int num = (Integer)(session.getAttribute("num"));
+		if(num > getPageCount()) {
+			session.setAttribute("num", getPageCount());
+		}
 		return "redirect:./";
 	}
 	
