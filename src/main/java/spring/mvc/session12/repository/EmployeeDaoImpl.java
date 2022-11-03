@@ -66,7 +66,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		// 利用 SQL-Join 結合 SimpleFlatMapper
 		String sql = "select e.eid, e.ename, e.salary, e.createtime, "  +
 					 "j.jid as job_jid, j.jname as job_jname, j.eid as job_eid " +
-					 "from employee e left join job j on e.eid = j.eid";
+					 "from employee e left join job j on e.eid = j.eid ";
 		
 		// 加入分頁 sql
 		if(offset >= 0) {
