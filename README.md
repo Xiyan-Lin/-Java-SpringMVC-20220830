@@ -28,5 +28,19 @@ CREATE TABLE `category` (
 
 INSERT INTO `category` VALUES ('Bird',NULL),('Cat','CFA'),('Dog','AKC'),('Fish',NULL),('Mammal','Misc'),('Other','Unknown'),('Reptile',NULL),('Spider',NULL);
 
+CREATE TABLE `city` (
+  `CityID` int(11) NOT NULL,
+  `ZipCode` varchar(50) DEFAULT NULL,
+  `City` varchar(50) DEFAULT NULL,
+  `State` varchar(50) DEFAULT NULL,
+  `AreaCode` varchar(50) DEFAULT NULL,
+  `Population1990` int(11) DEFAULT NULL,
+  `Population1980` int(11) DEFAULT NULL,
+  `Country` varchar(50) DEFAULT NULL,
+  `Latitude` float DEFAULT NULL,
+  `Longitude` float DEFAULT NULL,
+  PRIMARY KEY (`CityID`)
+);
+
 
 </pre>
