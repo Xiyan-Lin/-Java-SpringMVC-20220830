@@ -31,10 +31,7 @@ public class EmployeeController {
 	
 	@GetMapping("/")
 	public String index(@ModelAttribute Employee employee, Model model) {
-		model.addAttribute("_method", "POST");
-		model.addAttribute("employees", employeeDao.query());
-		model.addAttribute("pageCount", getPageCount());
-		return "session12/employee";
+		return page(employee, 1, model);
 	}
 	
 	@GetMapping("/{eid}")
@@ -47,7 +44,7 @@ public class EmployeeController {
 	}
 	
 	@GetMapping("/page/{num}")
-	public String page(@PathVariable("num") Integer num, Model model) {
+	public String page(@ModelAttribute Employee employee, @PathVariable("num") Integer num, Model model) {
 		int offset = (num - 1) * EmployeeDao.LIMIT;
 		model.addAttribute("_method", "POST");
 		model.addAttribute("employees", employeeDao.queryPage(offset));
