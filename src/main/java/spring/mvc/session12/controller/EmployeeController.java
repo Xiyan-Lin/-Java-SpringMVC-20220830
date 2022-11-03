@@ -53,6 +53,7 @@ public class EmployeeController {
 		model.addAttribute("_method", "POST");
 		model.addAttribute("employees", employeeDao.queryPage(offset));
 		model.addAttribute("pageCount", getPageCount());
+		model.addAttribute("pageNum", num);
 		return "session12/employee";
 	}
 	

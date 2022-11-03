@@ -83,7 +83,12 @@
 						<legend>
 							Employee List | 分頁查詢
 							<c:forEach var="num" begin="1" end="${ pageCount }">
-								<a href="${ pageContext.request.contextPath }/mvc/jdbc/employee/page/${ num }">${ num }</a>&nbsp;
+								<c:if test="${ num eq pageNum }">
+									${ num }&nbsp;
+								</c:if>
+								<c:if test="${ num != pageNum }">
+									<a href="${ pageContext.request.contextPath }/mvc/jdbc/employee/page/${ num }">${ num }</a>&nbsp;
+								</c:if>
 							</c:forEach>
 						</legend>
 						<table class="pure-table pure-table-bordered" style="width: 100%">
