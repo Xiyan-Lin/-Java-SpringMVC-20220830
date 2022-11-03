@@ -41,10 +41,12 @@
         var options = {
           title: 'Employee Salary'
         };
-
-        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-
-        chart.draw(data, options);
+		
+        var chart1 = new google.visualization.ColumnChart(document.getElementById('columnchart'));
+        var chart2 = new google.visualization.PieChart(document.getElementById('piechart'));
+		
+        chart1.draw(data, options);
+        chart2.draw(data, options);
       }
     </script>
 </head>
@@ -87,7 +89,8 @@
 			</td>
 			<!-- Salary Column Chart -->
 			<td valign="top">
-				Salary Column Chart
+				Salary Column Chart <p />
+				<div id="columnchart" style="width: 400x; height: 250px;"></div>
 			</td>
 			<!-- Salary Pie Chart -->
 			<td valign="top">
