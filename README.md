@@ -26,4 +26,7 @@ CREATE TABLE `category` (
   PRIMARY KEY (`Category`)
 );
 
+INSERT INTO `category` VALUES ('Bird',NULL),('Cat','CFA'),('Dog','AKC'),('Fish',NULL),('Mammal','Misc'),('Other','Unknown'),('Reptile',NULL),('Spider',NULL);
+
+
 </pre>
