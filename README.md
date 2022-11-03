@@ -93,6 +93,18 @@ CREATE TABLE `merchandise` (
 
 INSERT INTO `merchandise` VALUES (1,'Dog Kennel-Small',11,45,'Dog'),(2,'Dog Kennel-Medium',12,65,'Dog'),(3,'Dog Kennel-Large',13,85,'Dog'),(4,'Dog Kennel-Extra Large',6,110,'Dog'),(5,'Cat Bed-Small',36,25,'Cat'),(6,'Cat Bed-Medium',35,35,'Cat'),(7,'Dog Toy',134,4,'Dog'),(8,'Cat Toy',182,3,'Cat'),(9,'Dog Food-Dry-10 pound',211,7.5,'Dog'),(10,'Dog Food-Dry-25 pound',100,16,'Dog'),(11,'Dog Food-Dry-50 pound',373,30,'Dog'),(12,'Cat Food-Dry-5 pound',413,7,'Cat'),(13,'Cat Food-Dry-10 pound',224,10,'Cat'),(14,'Cat Food-Dry-25 pound',300,18,'Cat'),(15,'Dog Food-Can-Regular',452,0.4,'Dog'),(16,'Dog Food-Can-Premium',1179,0.8,'Dog'),(17,'Cat Food-Can-Regular',7438,0.5,'Cat'),(18,'Cat Food-Can-Premium',1864,1,'Cat'),(19,'Cat Litter-10 pound',128,8,'Cat'),(20,'Wood Shavings/Bedding',141,10,'Mammal'),(21,'Bird Cage-Medium',5,25,'Bird'),(22,'Bird Cage-Large',15,75,'Bird'),(23,'Aquarium-25 gal',28,75,'Fish'),(24,'Aquarium-100 gal',11,150,'Fish'),(25,'Fish Food',113,3,'Fish'),(26,'Aquarium Decoration',48,6,'Fish'),(27,'Aquarium Filter & Pump',18,35,'Fish'),(28,'Aquarium Light',65,25,'Fish'),(29,'Flea Collar-Cat',240,6,'Cat'),(30,'Flea Collar-Dog-Medium',429,7,'Dog'),(31,'Flea Collar-Dog-Large',1018,8.5,'Dog'),(32,'Collar-Dog-Small',47,12,'Dog'),(33,'Collar-Dog-Medium',92,15,'Dog'),(34,'Collar-Dog-Large',132,20,'Dog'),(35,'Collar-Cat',150,8,'Cat'),(36,'Leash',172,22,'Dog'),(37,'Brush-Stiff',34,8,'Dog'),(38,'Brush-Soft',50,8,'Cat'),(39,'Litter Box',131,8,'Cat'),(40,'Litter Box-Covered',20,15,'Cat');
 
+CREATE TABLE `sale` (
+  `SaleID` int(11) NOT NULL,
+  `SaleDate` datetime DEFAULT NULL,
+  `EmployeeID` int(11) DEFAULT NULL,
+  `CustomerID` int(11) DEFAULT NULL,
+  `SalesTax` double DEFAULT NULL,
+  PRIMARY KEY (`SaleID`),
+  KEY `fk_employees_idx` (`EmployeeID`),
+  KEY `fk_customers_idx` (`CustomerID`),
+  CONSTRAINT `fk_customers` FOREIGN KEY (`CustomerID`) REFERENCES `customer` (`CustomerID`),
+  CONSTRAINT `fk_employees` FOREIGN KEY (`EmployeeID`) REFERENCES `employee` (`EmployeeID`)
+);
 
 
 
