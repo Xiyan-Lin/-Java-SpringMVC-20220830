@@ -33,6 +33,7 @@ public class EmployeeController {
 	public String index(@ModelAttribute Employee employee, Model model) {
 		model.addAttribute("_method", "POST");
 		model.addAttribute("employees", employeeDao.query());
+		model.addAttribute("pageCount", getPageCount());
 		return "session12/employee";
 	}
 	
@@ -41,6 +42,7 @@ public class EmployeeController {
 		model.addAttribute("_method", "PUT");
 		model.addAttribute("employees", employeeDao.query());
 		model.addAttribute("employee", employeeDao.getById(eid));
+		model.addAttribute("pageCount", getPageCount());
 		return "session12/employee";
 	}
 	
@@ -49,6 +51,7 @@ public class EmployeeController {
 		if(result.hasErrors()) {
 			model.addAttribute("_method", "POST");
 			model.addAttribute("employees", employeeDao.query());
+			model.addAttribute("pageCount", getPageCount());
 			return "session12/employee"; 
 		}
 		employeeDao.add(employee);
@@ -60,6 +63,7 @@ public class EmployeeController {
 		if(result.hasErrors()) {
 			model.addAttribute("_method", "PUT");
 			model.addAttribute("employees", employeeDao.query());
+			model.addAttribute("pageCount", getPageCount());
 			return "session12/employee"; 
 		}
 		employeeDao.update(employee);
