@@ -46,6 +46,16 @@ public class EmployeeController {
 		return "session12/employee";
 	}
 	
+	@GetMapping("/page/{num}")
+	public String page(@PathVariable("num") Integer num, Model model) {
+		int offset = (num - 1) * EmployeeDao.LIMIT;
+		model.addAttribute("_method", "POST");
+		model.addAttribute("employees", employeeDao.queryPage(offset));
+		model.addAttribute("pageCount", getPageCount());
+		return "session12/employee";
+	}
+	
+	
 	@PostMapping("/")
 	public String add(@ModelAttribute @Valid Employee employee, BindingResult result, Model model) {
 		if(result.hasErrors()) {
