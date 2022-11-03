@@ -24,6 +24,31 @@
 			document.getElementById("employee").submit();
 		}
 	</script>
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+	<script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['Task', 'Hours per Day'],
+          ['Work',     11],
+          ['Eat',      2],
+          ['Commute',  2],
+          ['Watch TV', 2],
+          ['Sleep',    7]
+        ]);
+
+        var options = {
+          title: 'My Daily Activities'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
+      }
+    </script>
 </head>
 <body style="padding: 15px;">
 
@@ -68,7 +93,8 @@
 			</td>
 			<!-- Salary Pie Chart -->
 			<td valign="top">
-				Salary Pie Chart
+				Salary Pie Chart <p />
+				<div id="piechart" style="width: 400x; height: 250px;"></div>
 			</td>
 			<!-- Jobs Line Chart -->
 			<td valign="top">
@@ -109,7 +135,9 @@
 										<td>${ emp.salary }</td>
 										<td>
 											<c:forEach var="job" items="${ emp.jobs }">
-												${ job.jname }
+												<a href="${ pageContext.request.contextPath }/mvc/jdbc/job/${ job.jid }">
+													${ job.jname }
+												</a>
 											</c:forEach>
 										</td>
 										<td>${ emp.createtime }</td>
