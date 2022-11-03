@@ -24,6 +24,11 @@ public class EmployeeController {
 	@Autowired
 	private EmployeeDao employeeDao;
 	
+	private int getPageCount() {
+		int pageCount = (int)Math.ceil((double)employeeDao.getCount() / EmployeeDao.LIMIT);
+		return pageCount;
+	}
+	
 	@GetMapping("/")
 	public String index(@ModelAttribute Employee employee, Model model) {
 		model.addAttribute("_method", "POST");
