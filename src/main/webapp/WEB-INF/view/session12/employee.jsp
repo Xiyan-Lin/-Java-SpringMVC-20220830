@@ -81,7 +81,10 @@
 				<form class="pure-form">
 					<fieldset>
 						<legend>
-							Employee List
+							Employee List | 分頁查詢
+							<c:forEach var="num" begin="1" end="${ pageCount }">
+								<a href="${ pageContext.request.contextPath }/mvc/jdbc/employee/page/${ num }">${ num }</a>&nbsp;
+							</c:forEach>
 						</legend>
 						<table class="pure-table pure-table-bordered" style="width: 100%">
 							<thead>
