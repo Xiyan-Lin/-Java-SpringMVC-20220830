@@ -134,6 +134,9 @@ CREATE TABLE `supplier` (
   CONSTRAINT `fk_citysupplier` FOREIGN KEY (`CityID`) REFERENCES `city` (`CityID`)
 );
 
+INSERT INTO `supplier` VALUES (1,'Hardin','Fannie','6065681851','8999 Weeping Willow Road','40403',7926),(2,'Fugate','Jody','6156259479','787 Park Street','37172',10896),(3,'Murphy','Faye','4024779061','4218 Industrial Drive','68108',9208),(4,'Frost','Kaye','6066300346','7049 Carrington Road','40965',7972),(5,'Sims','Stephanie','6150489494','4696 Green Street','37167',10893),(6,'Mason','Whitney','3076454066','5230 Pleasant Valley Drive','82001',11694),(7,'Lamb','Malcolm','5027878033','4379 Greensburg Street','40218',7979),(8,'Roberts','Jody','9077976770','527 Mud River Valley Road','99502',5855),(9,'Dillard','George','8034482061','9713 Wildwood Street','29201',10740),(10,'Rhodes','Brad','3084667092','633 West Street','68847',9198),(11,'Parrish','Mandy','6060331460','9641 Elm Street','40422',7935),(12,'Love','David','6062826165','5745 Mud River Valley Road','40330',7955),(13,'Hughes','Natasha','6157988614','5610 Church Street','38501',10830),(14,'Harrison','Angela','6061217621','8558 N. Main Street','41075',7949),(15,'Osborne','Christine','6152458406','1565 Sunnyhill Trace','37087',10862);
+
+
 
 
 </pre>
