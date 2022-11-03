@@ -63,8 +63,21 @@ public class EmployeeDaoImpl implements EmployeeDao {
 
 	@Override
 	public List<Employee> queryPage(int offset) {
-		// TODO Auto-generated method stub
-		return null;
+		// 利用 SQL-Join 結合 SimpleFlatMapper
+		String sql = "select e.eid, e.ename, e.salary, e.createtime, "  +
+					 "j.jid as job_jid, j.jname as job_jname, j.eid as job_eid " +
+					 "from employee e left join job j on e.eid = j.eid";
+		
+		// 加入分頁 sql
+		if(offset >= 0) {
+			sql += String.format("limit %d offset %d ", LIMIT, offset) ;
+		}
+		
+		ResultSetExtractor<List<Employee>> resultSetExtractor = JdbcTemplateMapperFactory.newInstance()
+				.addKeys("eid") // employee 主表的主鍵欄位
+				.newResultSetExtractor(Employee.class); // 資料結果要對應的物件類別
+		
+		return jdbcTemplate.query(sql, resultSetExtractor);
 	}
 	
 	
