@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -29,7 +30,8 @@ public class DivController {
 	}
 	
 	// 捕獲數學錯誤
-	@ExceptionHandler({ArithmeticException.class})
+	// 捕獲資料配置錯誤
+	@ExceptionHandler({ArithmeticException.class, BindException.class})
 	public String fixed(Exception ex, Model model, HttpServletRequest request) {
 		String referer = request.getHeader("Referer"); // 前一頁的位置
 		model.addAttribute("referer", referer);
