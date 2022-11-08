@@ -29,9 +29,9 @@ public class DivController {
 		return "session13/div";
 	}
 	
-	// 捕獲數學錯誤
 	// 捕獲資料配置錯誤
-	@ExceptionHandler({ArithmeticException.class, BindException.class})
+	//@ExceptionHandler({ArithmeticException.class, BindException.class})
+	@ExceptionHandler({BindException.class})
 	public String fixed(Exception ex, Model model, HttpServletRequest request) {
 		String referer = request.getHeader("Referer"); // 前一頁的位置
 		model.addAttribute("referer", referer);
