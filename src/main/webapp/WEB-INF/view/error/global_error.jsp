@@ -14,7 +14,7 @@
 	<body style="padding: 15px">
 		<form class="pure-form" method="get" action="${ referer }">
 			<fieldset>
-				<legend>錯誤頁面</legend>
+				<legend><font color="#FF0000">全局錯誤頁面</font></legend>
 				發生錯誤位置: ${ referer }<p />
 				錯誤訊息內容: ${ ex }<p />
 				<button type="submit" class="pure-button pure-button-primary">返回</button>
