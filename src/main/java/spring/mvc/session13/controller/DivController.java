@@ -3,6 +3,7 @@ package spring.mvc.session13.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import spring.mvc.session13.entity.Div;
@@ -13,6 +14,13 @@ public class DivController {
 	
 	@GetMapping("/")
 	public String index(@ModelAttribute Div div) {
+		return "session13/div";
+	}
+	
+	@PostMapping("/")
+	public String calc(@ModelAttribute Div div) {
+		int result = div.getX() / div.getY();
+		div.setResult(result);
 		return "session13/div";
 	}
 	
