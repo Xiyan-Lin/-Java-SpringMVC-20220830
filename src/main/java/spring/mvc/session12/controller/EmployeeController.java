@@ -98,7 +98,7 @@ public class EmployeeController {
 			model.addAttribute("employees", employeeDao.queryPage(offset));
 			model.addAttribute("pageCount", getPageCount());
 			model.addAttribute("pageNum", num);
-			return "session12/employee"; 
+			return "session12/employee"; // forward
 		}
 		employeeDao.update(employee);
 		return "redirect:./";

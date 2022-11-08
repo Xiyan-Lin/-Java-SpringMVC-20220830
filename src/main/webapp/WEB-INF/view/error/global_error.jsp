@@ -1,3 +1,5 @@
+<!-- 小技巧：讓 jsp 可以支援所有 HTTP 方法 -->
+<%@ page isErrorPage="true" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
