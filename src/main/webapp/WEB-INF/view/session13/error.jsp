@@ -15,8 +15,8 @@
 		<form class="pure-form" method="get" action="${ referer }">
 			<fieldset>
 				<legend>錯誤頁面</legend>
-				哪一個頁面發生錯誤 (Referer): ${ referer }<p />
-				錯誤訊息: ${ ex }<p />
+				發生錯誤位置: ${ referer }<p />
+				錯誤訊息內容: ${ ex }<p />
 				<button type="submit" class="pure-button pure-button-primary">返回</button>
 			</fieldset>
 		</form>
