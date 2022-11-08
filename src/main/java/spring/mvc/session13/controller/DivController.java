@@ -18,7 +18,8 @@ import spring.mvc.session13.entity.Div;
 public class DivController {
 	
 	@GetMapping("/")
-	public String index(@ModelAttribute Div div) {
+	public String index(@ModelAttribute Div div, Model model) {
+		System.out.println(model.asMap());
 		return "session13/div";
 	}
 	
