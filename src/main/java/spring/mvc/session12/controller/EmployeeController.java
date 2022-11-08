@@ -1,13 +1,16 @@
 package spring.mvc.session12.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -53,6 +56,10 @@ public class EmployeeController {
 	
 	@GetMapping("/page/{num}")
 	public String page(@ModelAttribute Employee employee, @PathVariable("num") Integer num, Model model, HttpSession session) {
+		if(num > getPageCount()) {
+			throw new RuntimeException("無此頁");
+		}
+		
 		int offset = (num - 1) * EmployeeDao.LIMIT;
 		// 將 num, offset 存放到 session 變數中
 		session.setAttribute("num", num);
@@ -105,6 +112,14 @@ public class EmployeeController {
 			session.setAttribute("num", getPageCount());
 		}
 		return "redirect:./";
+	}
+	
+	// 捕獲執行時期錯誤
+	@ExceptionHandler({RuntimeException.class})
+	public String fixed(Exception ex, Model model, HttpServletRequest request) {
+		model.addAttribute("location", "/spring.mvc/mvc/jdbc/employee/");
+		model.addAttribute("ex", ex); // 錯誤訊息
+		return "session12/error";
 	}
 	
 }
