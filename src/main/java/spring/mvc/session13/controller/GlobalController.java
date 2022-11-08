@@ -1,12 +1,15 @@
 package spring.mvc.session13.controller;
 
 import java.sql.SQLException;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ModelAttribute;
 
 @ControllerAdvice
 public class GlobalController {
@@ -18,6 +21,14 @@ public class GlobalController {
 		model.addAttribute("referer", referer);
         model.addAttribute("ex", ex);
         return "error/global_error";
+    }
+	
+	@ModelAttribute(name = "globalMapData")
+    public Map<String,Object> mydata() {
+        Map<String, Object> map = new LinkedHashMap<>();
+        map.put("copyright", "ABC公司");
+        map.put("version", 11);
+        return map;
     }
 	
 }
