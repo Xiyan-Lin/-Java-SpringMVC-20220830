@@ -7,8 +7,10 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.ui.Model;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
 @ControllerAdvice
@@ -31,4 +33,13 @@ public class GlobalController {
         return map;
     }
 	
+	@InitBinder("b")
+    public void b(WebDataBinder binder) {
+        binder.setFieldDefaultPrefix("b.");
+    }
+    
+    @InitBinder("a")
+    public void a(WebDataBinder binder) {
+        binder.setFieldDefaultPrefix("a.");
+    }
 }
