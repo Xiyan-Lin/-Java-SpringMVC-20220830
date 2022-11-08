@@ -15,7 +15,7 @@
 		<form class="pure-form" method="get" action="${ location }">
 			<fieldset>
 				<legend>錯誤頁面</legend>
-				返回頁面位置: ${ location }
+				返回頁面位置: ${ location }<p />
 				錯誤訊息內容: ${ ex }<p />
 				<button type="submit" class="pure-button pure-button-primary">返回</button>
 			</fieldset>
